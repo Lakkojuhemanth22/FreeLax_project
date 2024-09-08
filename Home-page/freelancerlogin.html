@@ -23,7 +23,7 @@
                             <input type="password" id="freelancerPassword" placeholder="Password" required>
                             <i class="ri-lock-line icon"></i>
                         </div>
-                        <button type="submit" class="btn">Sign In</button>
+                        <button type="submit" class="btn" onclick="window.location.href='Freelancer_hompage.html';">Sign In</button>
                     </form>
                     <p class="toggle-text">Don't have an account? <button id="show-register">Register</button></p>
                 </div>
@@ -71,74 +71,7 @@
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.getElementById("freelancerLoginForm");
-    const registerForm = document.getElementById("freelancerRegisterForm");
-
-    // Handle the registration form submission
-    registerForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        const username = document.getElementById("freelancerName").value;
-        const email = document.getElementById("freelancerRegisterEmail").value;
-        const password = document.getElementById("freelancerRegisterPassword").value;
-        const confirmPassword = document.getElementById("freelancerConfirmPassword").value;
-
-        if (password !== confirmPassword) {
-            alert("Passwords do not match!");
-            return;
-        }
-
-        try {
-            const response = await fetch("http://localhost:8080/freelancer/create", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ username, password, email }),
-            });
-
-            if (response.ok) {
-                alert("Registration successful! Please log in.");
-                // Redirect to login page or toggle to the login form
-                document.getElementById("show-login").click();
-            } else {
-                const errorData = await response.json();
-                alert("Registration failed: " + errorData.message);
-            }
-        } catch (error) {
-            console.error("Error during registration:", error);
-        }
-    });
-
-    // Handle the login form submission
-    loginForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        const username = document.getElementById("freelancerLoginUsername").value;
-        const password = document.getElementById("freelancerPassword").value;
-
-        try {
-            const response = await fetch("http://localhost:8080/freelancer/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ username, password }),
-            });
-
-            if (response.ok) {
-                // Redirect to the freelancer homepage on successful login
-                window.location.href = "Freelancer_hompage.html";
-            } else {
-                const errorData = await response.json();
-                alert("Login failed: " + errorData.message);
-            }
-        } catch (error) {
-            console.error("Error during login:", error);
-        }
-    });
-
+        
     // Toggle between login and register forms
     document.getElementById("show-register").addEventListener("click", () => {
         document.getElementById("login-form").style.display = "none";
