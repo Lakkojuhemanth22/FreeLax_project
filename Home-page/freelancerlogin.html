@@ -71,7 +71,46 @@
         </div>
     </div>
     <script>
-    
+        document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("freelancerLoginForm");
+    const registerForm = document.getElementById("freelancerRegisterForm");
+
+    // Handle the registration form submission
+    registerForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const username = document.getElementById("freelancerName").value;
+        const email = document.getElementById("freelancerRegisterEmail").value;
+        const password = document.getElementById("freelancerRegisterPassword").value;
+        const confirmPassword = document.getElementById("freelancerConfirmPassword").value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:8080/freelancer/create", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username, password, email }),
+            });
+
+            if (response.ok) {
+                alert("Registration successful! Please log in.");
+                // Redirect to login page or toggle to the login form
+                document.getElementById("show-login").click();
+            } else {
+                const errorData = await response.json();
+                alert("Registration failed: " + errorData.message);
+            }
+        } catch (error) {
+            console.error("Error during registration:", error);
+        }
+    });
+
     // Handle the login form submission
     loginForm.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -80,7 +119,7 @@
         const password = document.getElementById("freelancerPassword").value;
 
         try {
-            const response = await fetch("http://localhost:8080/api/auth/login/freelancer", {
+            const response = await fetch("http://localhost:8080/freelancer/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
