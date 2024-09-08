@@ -71,7 +71,73 @@
         </div>
     </div>
     <script>
-        
+    //     document.addEventListener("DOMContentLoaded", () => {
+    // const loginForm = document.getElementById("freelancerLoginForm");
+    // const registerForm = document.getElementById("freelancerRegisterForm");
+
+    // registerForm.addEventListener("submit", async (event) => {
+    //     event.preventDefault();
+
+    //     const username = document.getElementById("freelancerName").value;
+    //     const email = document.getElementById("freelancerRegisterEmail").value;
+    //     const password = document.getElementById("freelancerRegisterPassword").value;
+    //     const confirmPassword = document.getElementById("freelancerConfirmPassword").value;
+
+    //     if (password !== confirmPassword) {
+    //         alert("Passwords do not match!");
+    //         return;
+    //     }
+
+    //     try {
+    //         const response = await fetch("http://localhost:8080/freelancer/create", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({ username, password, email }),
+    //         });
+
+    //         if (response.ok) {
+    //             alert("Registration successful! Please log in.");
+
+    //             document.getElementById("show-login").click();
+    //         } else {
+    //             const errorData = await response.json();
+    //             alert("Registration failed: " + errorData.message);
+    //         }
+    //     } catch (error) {
+    //         console.error("Error during registration:", error);
+    //     }
+    // });
+
+   
+    // loginForm.addEventListener("submit", async (event) => {
+    //     event.preventDefault();
+
+    //     const username = document.getElementById("freelancerLoginUsername").value;
+    //     const password = document.getElementById("freelancerPassword").value;
+
+    //     try {
+    //         const response = await fetch("http://localhost:8080/freelancer/login", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({ username, password }),
+    //         });
+
+    //         if (response.ok) {
+         
+    //             window.location.href = "Freelancer_hompage.html";
+    //         } else {
+    //             const errorData = await response.json();
+    //             alert("Login failed: " + errorData.message);
+    //         }
+    //     } catch (error) {
+    //         console.error("Error during login:", error);
+    //     }
+    // });
+
     // Toggle between login and register forms
     document.getElementById("show-register").addEventListener("click", () => {
         document.getElementById("login-form").style.display = "none";
@@ -82,7 +148,7 @@
         document.getElementById("login-form").style.display = "block";
         document.getElementById("register-form").style.display = "none";
     });
-});
+// });
     </script>
 </body>
 </html>
